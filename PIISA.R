@@ -41,11 +41,6 @@ if(!requireNamespace('phyloseq',quietly = TRUE)){
   BiocManager::install("phyloseq", quietly=TRUE)  
 }
 library(phyloseq); packageVersion("phyloseq")
-#Load DESeq2
-if(!requireNamespace('DESeq2',quietly = TRUE)){
-  BiocManager::install("DESeq2", quietly=TRUE)  
-}
-library(DESeq2)
 
 writeLines("Finished loading packages\n",)
 
