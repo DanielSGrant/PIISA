@@ -555,13 +555,34 @@ ps <- phyloseq(otu_table(seqtab.nochim, taxa_are_rows=FALSE), tax_table(taxa))
 ps.bar <- transform_sample_counts(ps, function(OTU) OTU/sum(OTU))
 pdf(file = file.path(paste(ofolder, "Abundance_Plots.pdf",sep="/")),
     width = as.numeric(w),height = as.numeric(h), family = f, paper = p)
-print(plot_bar(ps.bar, fill = "Kingdom"))
-print(plot_bar(ps.bar, fill = "Phylum"))
-print(plot_bar(ps.bar, fill = "Class"))
-print(plot_bar(ps.bar, fill = "Order"))
-print(plot_bar(ps.bar, fill = "Family"))
-print(plot_bar(ps.bar, fill = "Genus"))
-print(plot_bar(ps.bar, fill = "Species"))
+print(plot_bar(ps.bar, fill = "Kingdom") + geom_bar(aes(color = Species, fill = Species), colour='black', stat = "identity", position = "stack") +
+        labs(x = "", y = "Relative Abundance\n") + scale_fill_brewer(palette = "Accent") +
+        theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+              panel.background = element_blank(), axis.line = element_line(colour = "black")))
+print(plot_bar(ps.bar, fill = "Phylum") + geom_bar(aes(color = Species, fill = Species), colour='black', stat = "identity", position = "stack") +
+        labs(x = "", y = "Relative Abundance\n") + scale_fill_brewer(palette = "Accent") +
+        theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+              panel.background = element_blank(), axis.line = element_line(colour = "black")))
+print(plot_bar(ps.bar, fill = "Class") + geom_bar(aes(color = Species, fill = Species), colour='black', stat = "identity", position = "stack") +
+        labs(x = "", y = "Relative Abundance\n") + scale_fill_brewer(palette = "Accent") +
+        theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+              panel.background = element_blank(), axis.line = element_line(colour = "black")))
+print(plot_bar(ps.bar, fill = "Order") + geom_bar(aes(color = Species, fill = Species), colour='black', stat = "identity", position = "stack") +
+        labs(x = "", y = "Relative Abundance\n") + scale_fill_brewer(palette = "Accent") +
+        theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+              panel.background = element_blank(), axis.line = element_line(colour = "black")))
+print(plot_bar(ps.bar, fill = "Family") + geom_bar(aes(color = Species, fill = Species), colour='black', stat = "identity", position = "stack") +
+        labs(x = "", y = "Relative Abundance\n") + scale_fill_brewer(palette = "Accent") +
+        theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+              panel.background = element_blank(), axis.line = element_line(colour = "black")))
+print(plot_bar(ps.bar, fill = "Genus") + geom_bar(aes(color = Species, fill = Species), colour='black', stat = "identity", position = "stack") +
+        labs(x = "", y = "Relative Abundance\n") + scale_fill_brewer(palette = "Accent") +
+        theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+              panel.background = element_blank(), axis.line = element_line(colour = "black")))
+print(plot_bar(ps.bar, fill = "Species") + geom_bar(aes(color = Species, fill = Species), colour='black', stat = "identity", position = "stack") +
+        labs(x = "", y = "Relative Abundance\n") + scale_fill_brewer(palette = "Accent") +
+        theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+              panel.background = element_blank(), axis.line = element_line(colour = "black")))
 dev.off()
 
 
