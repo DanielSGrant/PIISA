@@ -298,14 +298,16 @@ while(lcv != 'n')
   print(plotErrors(errF, nominalQ=TRUE))
   print(plotErrors(errR, nominalQ=TRUE))
   dev.off()
-  writeLines("Done\n")
+  writeLines("Done")
   
   #Run dereplication before running dada
+  writeLines("\nDereplicating data")
   derepFs <- derepFastq(filtFs, verbose=FALSE)
   derepRs <- derepFastq(filtRs, verbose=FALSE)
   # Name the derep-class objects by the sample names
   names(derepFs) <- sample.names
   names(derepRs) <- sample.names
+  writeLines("Done")
   
   #Get type of data pooling from user
   p <- readline("Would you like to pool data for analysis (n) [y/n/p]: ")
