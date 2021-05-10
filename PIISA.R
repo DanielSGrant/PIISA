@@ -253,7 +253,7 @@ while(lcv != 'n')
   writeLines("\nTaking inputs for error plots.")
   #Get parameters for error plots
   #select plot width
-  w <- readline("Please enter the desired width for the quality scores plot in inches (8.5): ")
+  w <- readline("Please enter the desired width for the error plots in inches (8.5): ")
   if(w == "q"){stop()} else if(w == ""){w = 8.5}
   while(as.numeric(w) < 0 || as.numeric(w) > 50)
   {
@@ -261,7 +261,7 @@ while(lcv != 'n')
     if(w == "q"){stop()} else if(w == ""){w = 8.5}
   }
   #Select plot height
-  h <- readline("Please enter the desired height for the quality scores plot in inches (11): ")
+  h <- readline("Please enter the desired height for the error plots in inches (11): ")
   if(h == "q"){stop()}else if(h == ""){h = 11}
   while(as.numeric(h) < 0 || as.numeric(h) > 50)
   {
@@ -269,7 +269,7 @@ while(lcv != 'n')
     if(h == "q"){stop()} else if(h == ""){w = 11}
   }
   #Select font
-  f <- readline("Please enter the desired font for quality score plots (Helvetica): ")
+  f <- readline("Please enter the desired font for error plots (Helvetica): ")
   if(f == "q"){stop()} else if(f == ""){f = "Helvetica"}
   while(!(f %in% names(pdfFonts())))
   {
@@ -280,7 +280,7 @@ while(lcv != 'n')
       disp <- readline("Error, invalid selection. Enter y to see available fonts of n to enter font: ")
       if(disp == "q"){stop()} else if(disp == 'y'){print(names(pdfFonts()))}
     }
-    f <- readline("Please enter the desired font for quality score plots (Helvetica): ")
+    f <- readline("Please enter the desired font for error plots (Helvetica): ")
     if(f == "q"){stop()} else if(f == ""){f = "Helvetica"}
   }
   #Select paper size (letter or custom)
@@ -513,7 +513,7 @@ theme_set(theme_bw())
 #Get parameters for plots
 writeLines("\nTaking inputs for abundance plots.")
 #select plot width
-w <- readline("Please enter the desired width for the quality scores plot in inches (11): ")
+w <- readline("Please enter the desired width for the abundance plots in inches (11): ")
 if(w == "q"){stop()} else if(w == ""){w = 11}
 while(as.numeric(w) < 0 || as.numeric(w) > 50)
 {
@@ -521,7 +521,7 @@ while(as.numeric(w) < 0 || as.numeric(w) > 50)
   if(w == "q"){stop()} else if(w == ""){w = 11}
 }
 #Select plot height
-h <- readline("Please enter the desired height for the quality scores plot in inches (8.5): ")
+h <- readline("Please enter the desired height for the abundance plots in inches (8.5): ")
 if(h == "q"){stop()}else if(h == ""){h = 8.5}
 while(as.numeric(h) < 0 || as.numeric(h) > 50)
 {
@@ -529,7 +529,7 @@ while(as.numeric(h) < 0 || as.numeric(h) > 50)
   if(h == "q"){stop()} else if(h == ""){w = 8.5}
 }
 #Select font
-f <- readline("Please enter the desired font for quality score plots (Helvetica): ")
+f <- readline("Please enter the desired font for abundance plots (Helvetica): ")
 if(f == "q"){stop()} else if(f == ""){f = "Helvetica"}
 while(!(f %in% names(pdfFonts())))
 {
@@ -540,7 +540,7 @@ while(!(f %in% names(pdfFonts())))
     disp <- readline("Error, invalid selection. Enter y to see available fonts of n to enter font: ")
     if(disp == "q"){stop()} else if(disp == 'y'){print(names(pdfFonts()))}
   }
-  f <- readline("Please enter the desired font for quality score plots (Helvetica): ")
+  f <- readline("Please enter the desired font for abundance plots (Helvetica): ")
   if(f == "q"){stop()} else if(f == ""){f = "Helvetica"}
 }
 #Select paper size (letter or custom)
@@ -558,31 +558,31 @@ ps.bar <- transform_sample_counts(ps, function(OTU) OTU/sum(OTU))
 pdf(file = file.path(paste(ofolder, "Abundance_Plots.pdf",sep="/")),
     width = as.numeric(w),height = as.numeric(h), family = f, paper = p)
 print(plot_bar(ps.bar, fill = "Kingdom") + geom_bar(aes(color = Kingdom, fill = Kingdom), colour='black', stat = "identity", position = "stack") +
-        labs(x = "", y = "Relative Abundance\n") + scale_fill_brewer(palette = "Accent") +
+        labs(x = "", y = "Relative Abundance\n") + scale_fill_brewer(palette = "Paired") +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
               panel.background = element_blank(), axis.line = element_line(colour = "black")))
 print(plot_bar(ps.bar, fill = "Phylum") + geom_bar(aes(color = Phylum, fill = Phylum), colour='black', stat = "identity", position = "stack") +
-        labs(x = "", y = "Relative Abundance\n") + scale_fill_brewer(palette = "Accent") +
+        labs(x = "", y = "Relative Abundance\n") + scale_fill_brewer(palette = "Paired") +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
               panel.background = element_blank(), axis.line = element_line(colour = "black")))
 print(plot_bar(ps.bar, fill = "Class") + geom_bar(aes(color = Class, fill = Class), colour='black', stat = "identity", position = "stack") +
-        labs(x = "", y = "Relative Abundance\n") + scale_fill_brewer(palette = "Accent") +
+        labs(x = "", y = "Relative Abundance\n") + scale_fill_brewer(palette = "Paired") +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
               panel.background = element_blank(), axis.line = element_line(colour = "black")))
 print(plot_bar(ps.bar, fill = "Order") + geom_bar(aes(color = Order, fill = Order), colour='black', stat = "identity", position = "stack") +
-        labs(x = "", y = "Relative Abundance\n") + scale_fill_brewer(palette = "Accent") +
+        labs(x = "", y = "Relative Abundance\n") + scale_fill_brewer(palette = "Paired") +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
               panel.background = element_blank(), axis.line = element_line(colour = "black")))
 print(plot_bar(ps.bar, fill = "Family") + geom_bar(aes(color = Family, fill = Family), colour='black', stat = "identity", position = "stack") +
-        labs(x = "", y = "Relative Abundance\n") + scale_fill_brewer(palette = "Accent") +
+        labs(x = "", y = "Relative Abundance\n") + scale_fill_brewer(palette = "Paired") +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
               panel.background = element_blank(), axis.line = element_line(colour = "black")))
 print(plot_bar(ps.bar, fill = "Genus") + geom_bar(aes(color = Genus, fill = Genus), colour='black', stat = "identity", position = "stack") +
-        labs(x = "", y = "Relative Abundance\n") + scale_fill_brewer(palette = "Accent") +
+        labs(x = "", y = "Relative Abundance\n") + scale_fill_brewer(palette = "Paired") +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
               panel.background = element_blank(), axis.line = element_line(colour = "black")))
 print(plot_bar(ps.bar, fill = "Species") + geom_bar(aes(color = Species, fill = Species), colour='black', stat = "identity", position = "stack") +
-        labs(x = "", y = "Relative Abundance\n") + scale_fill_brewer(palette = "Accent") +
+        labs(x = "", y = "Relative Abundance\n") + scale_fill_brewer(palette = "Paired") +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
               panel.background = element_blank(), axis.line = element_line(colour = "black")))
 dev.off()
@@ -591,7 +591,7 @@ dev.off()
 #Get parameters for plots
 writeLines("\nTaking inputs for diversity plots.")
 #select plot width
-w <- readline("Please enter the desired width for the quality scores plot in inches (6): ")
+w <- readline("Please enter the desired width for the diversity plots in inches (6): ")
 if(w == "q"){stop()} else if(w == ""){w = 6}
 while(as.numeric(w) < 0 || as.numeric(w) > 50)
 {
@@ -599,7 +599,7 @@ while(as.numeric(w) < 0 || as.numeric(w) > 50)
   if(w == "q"){stop()} else if(w == ""){w = 6}
 }
 #Select plot height
-h <- readline("Please enter the desired height for the quality scores plot in inches (6): ")
+h <- readline("Please enter the desired height for the diversity plots in inches (6): ")
 if(h == "q"){stop()}else if(h == ""){h = 6}
 while(as.numeric(h) < 0 || as.numeric(h) > 50)
 {
@@ -607,7 +607,7 @@ while(as.numeric(h) < 0 || as.numeric(h) > 50)
   if(h == "q"){stop()} else if(h == ""){w = 6}
 }
 #Select font
-f <- readline("Please enter the desired font for quality score plots (Helvetica): ")
+f <- readline("Please enter the desired font for diversity plots (Helvetica): ")
 if(f == "q"){stop()} else if(f == ""){f = "Helvetica"}
 while(!(f %in% names(pdfFonts())))
 {
@@ -618,7 +618,7 @@ while(!(f %in% names(pdfFonts())))
     disp <- readline("Error, invalid selection. Enter y to see available fonts of n to enter font: ")
     if(disp == "q"){stop()} else if(disp == 'y'){print(names(pdfFonts()))}
   }
-  f <- readline("Please enter the desired font for quality score plots (Helvetica): ")
+  f <- readline("Please enter the desired font for diversity plots (Helvetica): ")
   if(f == "q"){stop()} else if(f == ""){f = "Helvetica"}
 }
 #Select paper size (letter or custom)
